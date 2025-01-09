@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import EmployeeService from "../Services/EmployeeService";
 import { useNavigate } from "react-router-dom";
-import ViewEmployee from "./ViewEmployee";
 
 const ListEmployee = () => {
     const navigate = useNavigate();
@@ -23,37 +22,42 @@ const ListEmployee = () => {
         }).catch(err => console.log(err));
     },[]);
     return(
-        <>
-        <h2 className="text-center">Employees</h2>
-        <div className="row">
-            <table className="table table-striped table-bordered">
-                <thead>
-                    <tr>
-                    <th>Employee FirstName</th>
-                    <th>Employee LastName</th>
-                    <th>Employee Email</th>
-                    <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {
-                        employees.map(
-                            employee => 
-                            <tr key= {employee.id}>
-                                <td key={employee.firstName}>{employee.firstName}</td>
-                                <td key={employee.lastName}>{employee.lastName}</td>
-                                <td key={employee.email}>{employee.email}</td>
-                                <td><button className="btn btn-info" onClick={()=>editEmployee(employee.id)}>Update</button>
-                                <button className="btn btn-danger" onClick={() => deleteEmployee(employee.id)}>Delete</button>
-                                <button className="btn btn-secondary" onClick={() => viewEmployee(employee.id)}>View</button>
-                                </td>
+        <div className='flex flex-col items-center justify-center relative w-full mb-4 '>
+            <h2 className='font-medium text-xl'>Empleados</h2>
+                <div className='relative overflow-x-auto shadow-md sm:rounded-lg'>
+                    <table className='w-full text-sm text-center rtl:text-right text-gray-500 dark:text-gray-400'>
+                        <thead className='text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400'>
+                            <tr>
+                            <th className='px-6 py-3'>Nombre</th>
+                            <th className='px-6 py-3'>Apellido</th>
+                            <th className='px-6 py-3'>Correo</th>
+                            <th className='px-6 py-3'>Acciones</th>
                             </tr>
-                        )
-                    }
-                </tbody>
-            </table>
+                        </thead>
+                        <tbody>
+                            {
+                                employees.map(
+                                    employee => 
+                                    <tr key= {employee.id}>
+                                        <td key={employee.firstName}>{employee.firstName}</td>
+                                        <td key={employee.lastName}>{employee.lastName}</td>
+                                        <td key={employee.email}>{employee.email}</td>
+                                        <td><button className='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full' 
+                                                onClick={()=>editEmployee(employee.id)}>
+                                                Actualizar
+                                                </button>
+                                            <button className='bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full'
+                                                onClick={() => deleteEmployee(employee.id)}>Eliminar</button>
+                                            <button className='bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded-full'
+                                            onClick={() => viewEmployee(employee.id)}>Ver</button>
+                                        </td>
+                                    </tr>
+                                )
+                            }
+                        </tbody>
+                    </table>
+                </div>
         </div>
-        </>
     );
 }
 export default ListEmployee;

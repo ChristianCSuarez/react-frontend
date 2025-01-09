@@ -47,57 +47,54 @@ const CreateOrUpdateEmployee = () => {
     },[]);
     
     return(
-        <>
-        <div className="container" style={{ marginTop: "4rem" }}>
-    <div className="row">
-        <div className="card col-md-6 offset-md-3">
-            <h3 className="text-center">{id < 0 ? "Add" : "Update"} Employee</h3>
-            <div className="card-body">
-                <form className="form" onSubmit={saveOrUpdateEmployee}>
-                    <div className="form-group">
-                        <label>First Name</label>
-                        <input 
-                            type="text" 
-                            placeholder="First Name" 
-                            name="firstName" 
-                            className="form-control" 
-                            value={firstName} 
-                            onChange={changeFirstNameHandler} 
-                        />
+            <div>
+                <div>
+                    <div className='flex flex-col items-center justify-center relative w-full mb-4 '>
+                        <h3 className='font-medium text-xl'>Empleado</h3>
+                        <div className='flex justify-between m-5'>
+                            <form onSubmit={saveOrUpdateEmployee}>
+                                <div>
+                                    <label>Nombre</label>
+                                    <input 
+                                        type="text" 
+                                        placeholder="Escribe tu nombre" 
+                                        name="firstName" 
+                                        className='border border-black rounded-lg ml-3'
+                                        value={firstName} 
+                                        onChange={changeFirstNameHandler} 
+                                    />
+                                </div>
+                                <div>
+                                    <label>Apellido</label>
+                                    <input 
+                                        type="text" 
+                                        placeholder="Escribe tu apellido" 
+                                        name="lastName" 
+                                        className='border border-black rounded-lg ml-3'
+                                        value={lastName} 
+                                        onChange={changeLastNameHandler} 
+                                    />
+                                </div>
+                                <div>
+                                    <label>Correo</label>
+                                    <input 
+                                        type="text" 
+                                        placeholder="Escribe tu correo" 
+                                        name="email" 
+                                        className='border border-black rounded-lg ml-6'
+                                        value={email} 
+                                        onChange={changeEmailHandler} 
+                                    />
+                                </div>
+                                <div className='flex justify-between mt-3'>
+                                    <button type="submit" className='bg-green-500 hover:bg-green-700 text-white font-bold py-1 px-4 rounded-full'>Guardar</button>
+                                    <button type="button" className='bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded-full' onClick={cancel}>Cancelar</button>
+                                </div>
+                            </form>
+                        </div>
                     </div>
-                    <div className="form-group">
-                        <label>Last Name</label>
-                        <input 
-                            type="text" 
-                            placeholder="Last Name" 
-                            name="lastName" 
-                            className="form-control" 
-                            value={lastName} 
-                            onChange={changeLastNameHandler} 
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label>Email</label>
-                        <input 
-                            type="text" 
-                            placeholder="Email" 
-                            name="email" 
-                            className="form-control" 
-                            value={email} 
-                            onChange={changeEmailHandler} 
-                        />
-                    </div>
-                    <div className="button-group">
-                        <button type="submit" className="btn btn-success">Save</button>
-                        <button type="button" className="btn btn-danger" onClick={cancel}>Cancel</button>
-                    </div>
-                </form>
+                </div>
             </div>
-        </div>
-    </div>
-</div>
-
-        </>
     );
 }
 export default CreateOrUpdateEmployee;

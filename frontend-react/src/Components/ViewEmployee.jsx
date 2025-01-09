@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom"
 import EmployeeService from "../Services/EmployeeService";
+import { ChevronLeftIcon, IdentificationIcon } from '@heroicons/react/24/solid'
 
 const ViewEmployee = () => {
     const {id} = useParams();
@@ -13,20 +14,30 @@ const ViewEmployee = () => {
         }).catch(err => console.log(err));
     },[]);
     return(
-    <>
-      <div class="card" style={{"width": "18rem","marginTop":"4rem","marginLeft":"auto","marginRight":"auto"}}>
-        <img class="card-img-top" style={{"border":"2px solid"}} src="https://www.svgrepo.com/show/33058/employee.svg" alt="Card image cap"/>
-        <div class="card-body">
-        <h5 class="card-title">Employee details </h5>
-        <ul class="list-group list-group-flush">
-        <li class="list-group-item">First Name: {employee.firstName}</li>
-        <li class="list-group-item">Last Name: {employee.lastName}</li>
-        <li class="list-group-item">Email: {employee.email}</li>
-        </ul>
-        <button onClick={()=>{navigate('/')}} class="btn btn-primary">back</button>
+      <div className='flex items-center justify-center'>
+        <IdentificationIcon className='size-20'/>
+        <div>
+            <h5 className='flex items-center justify-center font-semibold text-lg'>Información del Empleado</h5>
+            <div className='flex flex-col items-center w-100 py-5 px-8 text-xl font-light'>
+                <div className='flex justify-between'>
+                    <span>Nombre:</span><span>{employee.firstName}</span>
+                </div>
+                <div className='flex justify-between'>
+                    <span>Apellido</span><span>{employee.lastName}</span>
+                </div>
+                <div className='flex justify-between mb-3'>
+                    <span>Correo:</span><span>{employee.email}</span>
+                </div>
+                <div className='flex justify-between items-center bg-blue-600 rounded-lg px-3'>
+                <ChevronLeftIcon className="size-6 text-black cursor-pointer" />
+                    <button 
+                        onClick={()=>{navigate('/')}}
+                        >Atrás
+                    </button>
+                </div>
+            </div>
         </div>
      </div>
-    </>
     );
 }
 export default ViewEmployee;
