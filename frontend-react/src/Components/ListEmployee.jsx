@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import EmployeeService from "../Services/EmployeeService";
 import { useNavigate } from "react-router-dom";
+import Search from "./Search";
 
 const ListEmployee = () => {
     const navigate = useNavigate();
+    const [search, setSearch] = useState("");
     const [employees,setEmployees] = useState([]);
     const editEmployee = (employeeId) => {
         navigate(`add-employee/${employeeId}`)
@@ -25,6 +27,10 @@ const ListEmployee = () => {
         <div className='flex flex-col items-center justify-center relative w-full mb-4 '>
             <h2 className='font-medium text-xl'>Empleados</h2>
                 <div className='relative overflow-x-auto shadow-md sm:rounded-lg'>
+                    <Search
+                    search={search}
+                    setSearch={setSearch}
+                    />
                     <table className='w-full text-sm text-center rtl:text-right text-gray-500 dark:text-gray-400'>
                         <thead className='text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400'>
                             <tr>
@@ -36,7 +42,8 @@ const ListEmployee = () => {
                         </thead>
                         <tbody>
                             {
-                                employees.map(
+                                employees.filter((em) => em.firstName.toLowerCase().includes(search))
+                                .map(
                                     employee => 
                                     <tr key= {employee.id}>
                                         <td key={employee.firstName}>{employee.firstName}</td>
