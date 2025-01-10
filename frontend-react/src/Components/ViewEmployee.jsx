@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom"
 import EmployeeService from "../Services/EmployeeService";
-import { ChevronLeftIcon, IdentificationIcon } from '@heroicons/react/24/solid'
+import { IdentificationIcon } from '@heroicons/react/24/solid'
+import BackButton from "./BackButton";
 
 const ViewEmployee = () => {
     const {id} = useParams();
@@ -13,6 +14,7 @@ const ViewEmployee = () => {
             console.log(employee)
         }).catch(err => console.log(err));
     },[]);
+
     return(
       <div className='flex items-center justify-center'>
         <IdentificationIcon className='size-20'/>
@@ -28,13 +30,7 @@ const ViewEmployee = () => {
                 <div className='flex justify-between mb-3'>
                     <span>Correo:</span><span>{employee.email}</span>
                 </div>
-                <div className='flex justify-between items-center bg-blue-600 rounded-lg px-3'>
-                <ChevronLeftIcon className="size-6 text-black cursor-pointer" />
-                    <button 
-                        onClick={()=>{navigate('/')}}
-                        >Atrás
-                    </button>
-                </div>
+                <BackButton />
             </div>
         </div>
      </div>

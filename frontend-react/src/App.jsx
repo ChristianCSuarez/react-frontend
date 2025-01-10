@@ -4,6 +4,8 @@ import CreateOrUpdateEmployee from './Components/CreateOrUpdateEmployee';
 import HeaderComponent from './Components/HeaderComponent';
 import ListEmployee from './Components/ListEmployee';
 import ViewEmployee from './Components/ViewEmployee';
+import NotFound from './Components/NotFound';
+import Footer from './Components/Footer';
 
 function App() {
     return (
@@ -15,7 +17,9 @@ function App() {
               <Route exact path="/" element={<ListEmployee/>} />
               <Route exact path="/add-employee/:id" element={<CreateOrUpdateEmployee/>} />
               <Route exact path="/view-employee/:id" element={<ViewEmployee/>} />
+              <Route exact path="/*" element={<NotFound/>} />
             </Routes>
+            <Footer />
         </div>
       </Router>
       </>
